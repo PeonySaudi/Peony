@@ -1,123 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Peony Perfume</title>
 
-  <!-- مهم للجوال -->
+<head>
+  <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Peony Perfume</title>
+
   <style>
+
     body {
       margin: 0;
-      font-family: "Arial", sans-serif;
-      background: #fdecef;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg,#fff7f9,#fdecef);
       color: #7a3b4c;
       text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* خلفية متحركة */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background:
+      radial-gradient(circle,#ffd9e3 10%,transparent 11%);
+      background-size: 120px 120px;
+      animation: bgmove 15s linear infinite;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    @keyframes bgmove {
+      from {
+        transform: translate(0,0);
+      }
+
+      to {
+        transform: translate(-100px,-100px);
+      }
     }
 
     header {
-      padding: 20px;
+      padding: 30px;
     }
 
     header img {
-      width: 90px;
-      max-width: 100%;
+      width: 100px;
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 48px;
+      color: #d86f90;
       margin: 10px 0;
-      color: #e28aa0;
     }
 
     .hero img {
       width: 90%;
-      max-width: 320px;
-      border-radius: 20px;
-      margin: 20px auto;
-      display: block;
+      max-width: 340px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* حركة للصورة */
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
     }
 
     .section {
-      padding: 30px 15px;
-      max-width: 700px;
+      padding: 50px 20px;
+      max-width: 1000px;
       margin: auto;
     }
 
     .section h2 {
-      color: #d76c8c;
-      margin-bottom: 15px;
-      font-size: 22px;
+      color: #cf6a89;
+      margin-bottom: 25px;
+      font-size: 28px;
     }
 
     .notes {
       display: flex;
       justify-content: center;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 15px;
     }
 
     .note-box {
-      background: #fff;
+      background: white;
       padding: 15px;
+      border-radius: 20px;
+      width: 250px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: 0.4s;
+    }
+
+    .note-box:hover {
+      transform: translateY(-8px);
+    }
+
+    .note-box img {
+      width: 100%;
       border-radius: 15px;
+    }
+
+    /* المنتجات */
+    .product-card {
+      background: white;
+      width: 260px;
+      padding: 15px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.4s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.04);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .price {
+      color: #d86f90;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    /* بزنس كارد */
+    .business-card {
+      background: white;
+      width: 280px;
+      padding: 15px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.4s;
+    }
+
+    .business-card:hover {
+      transform: rotate(-2deg) scale(1.03);
+    }
+
+    .business-card img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    /* زر التواصل */
+    .contact-btn {
+      display: inline-block;
+      background: #d86f90;
+      color: white;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 40px;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* التعليقات */
+    .comment-box {
+      background: white;
+      padding: 20px;
+      border-radius: 25px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .comment-box input,
+    .comment-box textarea {
       width: 90%;
-      max-width: 220px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 15px;
+      border: none;
+      background: #fdecef;
+    }
+
+    .comment-box button {
+      background: #d86f90;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    /* للجوال */
+    @media (max-width: 768px) {
+
+      .note-box,
+      .product-card,
+      .business-card {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 35px;
+      }
+
     }
 
     footer {
-      background: #f6c1d0;
-      padding: 15px;
-      margin-top: 30px;
+      background: #f3adc0;
       color: white;
-      font-size: 14px;
+      padding: 15px;
+      margin-top: 40px;
     }
+
   </style>
+
 </head>
 
 <body>
 
-<header>
-  <img src="logo.png" alt="Peony Logo">
-  <h1>Peony</h1>
-</header>
+  <!-- Header -->
+  <header>
 
-<div class="hero">
-  <img src="poster.png" alt="Peony Perfume">
-</div>
+    <img src="logo.png" alt="Logo">
 
-<div class="section">
-  <h2>About Peony | عن العطر</h2>
-  <p>
-    Peony is a soft feminine fragrance inspired by elegance and flowers.
-    <br><br>
-    عطر بيوني عطر أنثوي ناعم مستوحى من الرقة والزهور.
-  </p>
-</div>
+    <h1>Peony</h1>
 
-<div class="section">
-  <h2>Fragrance Notes | مكونات العطر</h2>
-  <div class="notes">
-    <div class="note-box">
-      <strong>Top Notes</strong>
-      <p>Peony, Rose</p>
-    </div>
-    <div class="note-box">
-      <strong>Heart Notes</strong>
-      <p>Jasmine, Floral Notes</p>
-    </div>
-    <div class="note-box">
-      <strong>Base Notes</strong>
-      <p>Musk, Soft Woods</p>
-    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+
+    <img src="poster.png" alt="Perfume">
+
   </div>
-</div>
 
-<footer>
-  © 2025 Peony Perfume – School Project
-</footer>
+  <!-- About -->
+  <div class="section">
+
+    <h2>About Peony | عن العطر</h2>
+
+    <p>
+      Peony is a soft feminine fragrance inspired by elegance and flowers.
+      <br><br>
+      عطر بيوني عطر أنثوي ناعم مستوحى من الرقة والزهور.
+    </p>
+
+  </div>
+
+  <!-- Fragrance Notes -->
+  <div class="section">
+
+    <h2>Fragrance Notes | مكونات العطر</h2>
+
+    <div class="notes">
+
+      <div class="note-box">
+        <strong>Top Notes</strong>
+        <p>Peony, Rose</p>
+      </div>
+
+      <div class="note-box">
+        <strong>Heart Notes</strong>
+        <p>Jasmine, Floral Notes</p>
+      </div>
+
+      <div class="note-box">
+        <strong>Base Notes</strong>
+        <p>Musk, Soft Woods</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Posters -->
+  <div class="section">
+
+    <h2>Posters | البوسترات</h2>
+
+    <div class="notes">
+
+      <div class="note-box">
+        <img src="poster1.png">
+      </div>
+
+      <div class="note-box">
+        <img src="poster2.png">
+      </div>
+
+      <div class="note-box">
+        <img src="poster3.png">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Products -->
+  <div class="section">
+
+    <h2>Products | المنتجات</h2>
+
+    <div class="notes">
+
+      <div class="product-card">
+
+        <img src="product1.png">
+
+        <h3>Peony Classic</h3>
+
+        <p>Soft feminine fragrance.</p>
+
+        <div class="price">250 SAR</div>
+
+      </div>
+
+      <div class="product-card">
+
+        <img src="product2.png">
+
+        <h3>Peony Velvet</h3>
+
+        <p>Luxury floral perfume.</p>
+
+        <div class="price">320 SAR</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Business Cards -->
+  <div class="section">
+
+    <h2>Business Cards | بزنس كارد</h2>
+
+    <div class="notes">
+
+      <div class="business-card">
+        <img src="card1.png">
+      </div>
+
+      <div class="business-card">
+        <img src="card2.png">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Brand Story -->
+  <div class="section">
+
+    <h2>Brand Story | قصة العلامة</h2>
+
+    <p>
+      Peony started as a luxury floral fragrance inspired by elegance,
+      softness, and modern femininity.
+      <br><br>
+      بدأت بيوني كعطر فاخر مستوحى من الأناقة والنعومة والأنوثة العصرية.
+    </p>
+
+  </div>
+
+  <!-- Brand Philosophy -->
+  <div class="section">
+
+    <h2>Brand Philosophy | فلسفة العلامة</h2>
+
+    <p>
+      Peony believes that fragrance is not just a scent,
+      it is a feeling and a memory.
+      <br><br>
+      تؤمن بيوني أن العطر ليس مجرد رائحة،
+      بل إحساس وذكرى.
+    </p>
+
+  </div>
+
+  <!-- Contact -->
+  <div class="section">
+
+    <h2>Contact Us | تواصل معنا</h2>
+
+    <a href="mailto:peony@email.com" class="contact-btn">
+      Contact Peony
+    </a>
+
+  </div>
+
+  <!-- Comments -->
+  <div class="section">
+
+    <h2>Comments | التعليقات</h2>
+
+    <div class="comment-box">
+
+      <input type="text" placeholder="Your Name">
+
+      <textarea rows="5" placeholder="Write your comment"></textarea>
+
+      <br>
+
+      <button>Send</button>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+
+    © 2025 Peony Perfume – School Project
+
+  </footer>
 
 </body>
+
 </html>
